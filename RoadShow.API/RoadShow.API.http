@@ -1,0 +1,6 @@
+@RoadShow.API_HostAddress = http://localhost:5062
+
+GET {{RoadShow.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
