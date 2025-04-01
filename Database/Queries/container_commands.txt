@@ -1,0 +1,2 @@
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q@W3e4r5t" -e "MSSQL_PID=Evaluation" -p 1433:1433  --name roadshow --hostname roadshow -d mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+docker exec -it sqlpreview /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 1q@W3e4r5t
