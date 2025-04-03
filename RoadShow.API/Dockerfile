@@ -14,8 +14,10 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /app #/src
 COPY *.csproj ./ # ["RoadShow.API.csproj", "."]
 RUN dotnet restore # "./RoadShow.API.csproj"
-COPY ..csproj .
-WORKDIR "/src/."
+
+
+#COPY ..csproj .
+WORKDIR "/app/."
 RUN dotnet build "./RoadShow.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
