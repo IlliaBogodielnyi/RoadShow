@@ -9,13 +9,14 @@ EXPOSE 8081
 
 
 # This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
-WORKDIR "/app/."
-RUN dotnet build "./RoadShow.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+COPY . .
+RUN dotnet publish -c Release -o out
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out ./
+RUN dotnet build "./RoadShow.API.csproj" -c $BUILD_CONFIGURATION -o /app/out
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
