@@ -13,10 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["*.csproj", "./"]
-RUN dotnet restore "./RoadShow.API.csproj"
+RUN dotnet restore "./*.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "./RoadShow.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./*.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
