@@ -62,7 +62,8 @@ jobs:
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
-          file: ./RoadShow.API/Dockerfile
+          directory: ./src
+          file: ./src/Dockerfile
 
   deploy:
     permissions:
